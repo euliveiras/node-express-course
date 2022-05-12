@@ -1,6 +1,6 @@
 import typeorm from "../../typeorm";
 import { Repository } from "typeorm";
-import Task from "../entity/Task";
+import Task from "../entities/Task";
 
 type CreateTaskDTO = {
   name: string;
