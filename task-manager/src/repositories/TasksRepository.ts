@@ -57,12 +57,12 @@ export default class TasksRepository {
       }
     }
 
-    async getTask({ id}: { id: string }){
+    async getTask({ id }: { id: string }){
       try{
         const findedTask = await this.userRepository.findBy({ id });
-        return findedTask ;
-      } catch(err){
-        console.log(err);
+        return findedTask;
+      }catch(err){
+        console.log(err)
       }
-    }
+    };
 };
