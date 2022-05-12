@@ -1,5 +1,5 @@
 import api from "./app";
-const port = 3333;
+const port = process.env.PORT || 3333;
 
 api.listen(port, () => {
   console.log(`Server listening in port ${port}`);

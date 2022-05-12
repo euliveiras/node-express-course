@@ -1,4 +1,5 @@
 import "reflect-metadata";
+import "dotenv"
 import "../typeorm";
 import express from "express";
 import routes from "./routes";
