@@ -1,4 +1,3 @@
-import { Request, Response } from "express";
 import TasksRepository from "../repositories/TasksRepository";
 import asyncWrapper from "../middlewares/async";
 

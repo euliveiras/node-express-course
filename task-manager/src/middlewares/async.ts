@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 
 type AsyncWrapperArgs = {
-    (req: Request, re: Response, next: NextFunction): Promise<void>;
+    (req: Request, res: Response, next: NextFunction): Promise<any>;
 };
 
 export default function asyncWrapper(fn: AsyncWrapperArgs){
@@ -9,7 +9,7 @@ export default function asyncWrapper(fn: AsyncWrapperArgs){
         try{
             await fn(req, res, next);
         }catch(err){
-            next(err);
+            next(err)
         };
     };
 };
