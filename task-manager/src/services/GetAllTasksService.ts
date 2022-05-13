@@ -1,7 +1,7 @@
 import TasksRepository from "../repositories/TasksRepository";
 
 class GetAllTasksService{
-    constructor(public database: TasksRepository){
+    constructor(private database: TasksRepository){
         this.database = database
     }
     async execute(){
@@ -9,4 +9,4 @@ class GetAllTasksService{
     }
 };
 
-export const getAllTasksService = new GetAllTasksService(new TasksRepository);
+export const getAllTasksService = new GetAllTasksService(new TasksRepository());
