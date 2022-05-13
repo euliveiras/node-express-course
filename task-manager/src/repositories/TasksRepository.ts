@@ -11,6 +11,7 @@ type UpdateTaskDTO = {
 export type ITasksRepository = {
   getAllTasks(): Promise<Task[] | undefined>;
   createTask(taskName: string): Promise<Task | undefined>;
+  getTask(id: string): Promise<Task[] | undefined>;
 }
 
 export default class TasksRepository implements ITasksRepository {
@@ -45,7 +46,7 @@ export default class TasksRepository implements ITasksRepository {
       return { message: "task deleted!" };
   };
 
-  async getTask({ id }: { id: string }) {
+  async getTask( id: string ){
       const findedTask = await this.userRepository.findBy({ id });
       return findedTask;
   }

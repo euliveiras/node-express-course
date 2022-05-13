@@ -1,9 +1,8 @@
-import TasksRepository from "../repositories/TasksRepository";
 import asyncWrapper from "../middlewares/async";
+import { getTasksService } from "../services/GetTaskService";
 
 export default asyncWrapper(async function getTaskController(req, res){
-    const { id } = req.params;
-    const taskRepo = new TasksRepository();
-    const findedTask = await taskRepo.getTask({ id })
+    const { id } = req.params
+    const findedTask = await getTasksService.execute(id);
     res.json(findedTask)
 });
