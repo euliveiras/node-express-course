@@ -1,5 +1,5 @@
 import typeorm from "../../typeorm";
-import { Repository } from "typeorm";
+import { Repository, UpdateResult } from "typeorm";
 import Task from "../entities/Task";
 
 type UpdateTaskDTO = {
@@ -12,10 +12,11 @@ export type ITasksRepository = {
   getAllTasks(): Promise<Task[] | undefined>;
   createTask(taskName: string): Promise<Task | undefined>;
   getTask(id: string): Promise<Task[] | undefined>;
+  updateTask({ id, taskName, isCompleted }: UpdateTaskDTO): Promise<any>;
 }
 
 export default class TasksRepository implements ITasksRepository {
-  userRepository: Repository<Task>;
+  private userRepository: Repository<Task>;
   constructor() {
     this.userRepository = typeorm.getRepository(Task);
   }
