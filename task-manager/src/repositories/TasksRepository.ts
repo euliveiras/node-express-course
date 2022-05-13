@@ -12,7 +12,11 @@ type UpdateTaskDTO = {
   isCompleted?: boolean;
 };
 
-export default class TasksRepository {
+type ITasksRepository = {
+  getAllTasks(): Promise<Task[] | undefined>;
+}
+
+export default class TasksRepository implements ITasksRepository {
   userRepository: Repository<Task>;
   constructor() {
     this.userRepository = typeorm.getRepository(Task);
