@@ -1,5 +1,5 @@
 import typeorm from "../../typeorm";
-import { Repository, UpdateResult } from "typeorm";
+import { Repository } from "typeorm";
 import Task from "../entities/Task";
 
 type UpdateTaskDTO = {
@@ -19,7 +19,7 @@ export type ITasksRepository = {
 export default class TasksRepository implements ITasksRepository {
   private userRepository: Repository<Task>;
   constructor() {
-    this.userRepository = typeorm.getRepository(Task);
+      this.userRepository = typeorm.getRepository(Task);
   }
   async createTask(taskName: string) {
       const taskCreated = this.userRepository.create({

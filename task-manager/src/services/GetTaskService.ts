@@ -1,11 +1,16 @@
 import TasksRepository from "../repositories/TasksRepository";
+import { appError } from "../utils/AppError";
 
 class GetTaskService{
     constructor(private database: TasksRepository){
         this.database = database
     }
     async execute(id: string){
-        return await this.database.getTask(id);
+        try{
+            return await this.database.getTask(id);
+        }catch{
+            throw appError(`The given id(${id}) is invalid`, 404)
+        }
     }
 };
 
