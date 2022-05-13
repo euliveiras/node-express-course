@@ -1,10 +1,9 @@
 import asyncWrapper from "../middlewares/async";
-import TasksRepository from "../repositories/TasksRepository";
+import { createTaskService } from "../services/CreateTaskService";
 
 export default asyncWrapper( async function createTaskController(req, res){
-    const { taskName: name } = req.body;
-    if(name == "") throw new Error("Name in the body request is empty!")
-    const taskRepo = new TasksRepository();
-    const createdTask = await taskRepo.createTask({ name })
+    const {taskName}: { taskName: string} = req.body;
+    if(taskName == "") throw new Error("Name in the body request is empty!")
+    const createdTask = await createTaskService.execute(taskName);
     res.json(createdTask)
 });

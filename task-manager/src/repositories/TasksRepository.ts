@@ -2,18 +2,15 @@ import typeorm from "../../typeorm";
 import { Repository } from "typeorm";
 import Task from "../entities/Task";
 
-type CreateTaskDTO = {
-  name: string;
-};
-
 type UpdateTaskDTO = {
   id: string;
   taskName: string;
   isCompleted?: boolean;
 };
 
-type ITasksRepository = {
+export type ITasksRepository = {
   getAllTasks(): Promise<Task[] | undefined>;
+  createTask(taskName: string): Promise<Task | undefined>;
 }
 
 export default class TasksRepository implements ITasksRepository {
@@ -21,7 +18,7 @@ export default class TasksRepository implements ITasksRepository {
   constructor() {
     this.userRepository = typeorm.getRepository(Task);
   }
-  async createTask({ name: taskName }: CreateTaskDTO) {
+  async createTask(taskName: string) {
       const taskCreated = this.userRepository.create({
         taskName,
         isCompleted: false,
@@ -30,7 +27,7 @@ export default class TasksRepository implements ITasksRepository {
       return taskCreated;
   }
 
-  async getAllTasks(): Promise<Task[] | undefined> {
+  async getAllTasks(){
       const tasks = await this.userRepository.find();
       return tasks;
   }
