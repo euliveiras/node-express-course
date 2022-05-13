@@ -13,6 +13,7 @@ export type ITasksRepository = {
   createTask(taskName: string): Promise<Task | undefined>;
   getTask(id: string): Promise<Task[] | undefined>;
   updateTask({ id, taskName, isCompleted }: UpdateTaskDTO): Promise<any>;
+  deleteTask(id: string): Promise<{ message: string}>;
 }
 
 export default class TasksRepository implements ITasksRepository {
@@ -42,7 +43,7 @@ export default class TasksRepository implements ITasksRepository {
       return updatedTask;
   }
 
-  async deleteTask({ id }: { id: string }) {
+  async deleteTask( id: string) {
       const deletedTask = await this.userRepository.delete(id);
       return { message: "task deleted!" };
   };

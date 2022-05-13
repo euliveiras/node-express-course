@@ -1,9 +1,8 @@
 import asyncWrapper from "../middlewares/async";
-import TasksRepository from "../repositories/TasksRepository";
+import { deleteTaskService } from "../services/DeleteTaskService";
 
 export default asyncWrapper( async function deleteTaskController(req, res){
     const { id } = req.body;
-    const taskRepo = new TasksRepository();
-    const deletedTask = await taskRepo.deleteTask({ id });
+    const deletedTask = await deleteTaskService.execute(id)
     res.json(deletedTask);
 });
