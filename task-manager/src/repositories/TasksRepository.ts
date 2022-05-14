@@ -17,7 +17,7 @@ export type ITasksRepository = {
 }
 
 export default class TasksRepository implements ITasksRepository {
-  private userRepository: Repository<Task>;
+  readonly userRepository: Repository<Task>;
   constructor() {
       this.userRepository = typeorm.getRepository(Task);
   }

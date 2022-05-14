@@ -1,6 +1,6 @@
 import TasksRepository from "../repositories/TasksRepository";
 
-class GetAllTasksService{
+export default class GetAllTasksService{
     constructor(private database: TasksRepository){
         this.database = database
     }
