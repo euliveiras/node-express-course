@@ -1,4 +1,4 @@
-import { Any, Repository, UpdateResult } from "typeorm";
+import {  Repository } from "typeorm";
 import Task from "../entities/Task";
 import { ITasksRepository } from "./TasksRepository";
 
@@ -8,7 +8,7 @@ export default class MockedTasksRepository implements ITasksRepository{
         return [new Task()]
     }
     async getAllTasks() {
-        const tasks = [{id: "asdqsdq", isCompleted: false, taskName: "cachorros"}] as Task[]
+        const tasks = [{id: "asdqsdqxxxx", isCompleted: false, taskName: "cachorros"}] as Task[]
         return tasks
     }
     async createTask(taskName: string){

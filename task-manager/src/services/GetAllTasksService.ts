@@ -1,3 +1,4 @@
+import MockedTasksRepository from "../repositories/MockedTaskRepository";
 import TasksRepository from "../repositories/TasksRepository";
 
 export default class GetAllTasksService{
@@ -9,4 +10,6 @@ export default class GetAllTasksService{
     }
 };
 
-export const getAllTasksService = new GetAllTasksService(new TasksRepository());
+export const getAllTasksService = process.env.ENVIRONMENT === "TEST" 
+    ? new GetAllTasksService(new MockedTasksRepository())
+    : new GetAllTasksService(new TasksRepository());

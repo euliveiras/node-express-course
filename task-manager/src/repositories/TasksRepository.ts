@@ -1,4 +1,4 @@
-import typeorm from "../../typeorm";
+import typeorm  from "../config/typeorm";
 import { Repository } from "typeorm";
 import Task from "../entities/Task";
 

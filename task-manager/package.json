@@ -4,7 +4,7 @@
   "description": "manage your day-to-day tasks",
   "main": "dist/server.js",
   "scripts": {
-    "test": "jest --watch",
+    "test": "ENVIRONMENT=TEST jest --watch",
     "build": "npx tsc -w",
     "dev": "ts-node-dev --transpile-only src/server.ts",
     "migration:create": "typeorm migration:create",

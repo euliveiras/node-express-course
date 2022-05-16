@@ -6,15 +6,9 @@ import GetAllTasksService, {getAllTasksService} from "../services/GetAllTasksSer
 
 jest.mock("../repositories/TasksRepository");
 
-const mockedTasksRepository = TasksRepository as jest.Mock<TasksRepository>;
-
-mockedTasksRepository.mockImplementation(() => {
-    return new MockedTaskRepository()
-})
-
 describe("GetTaskService", () => {
     it("should return all tasks", async () => {
-        const getAllTasksService = new GetAllTasksService(mockedTasksRepository())
+        console.log(await getAllTasksService.execute())
         await expect(getAllTasksService.execute()).resolves.toEqual({})
     })
 });
