@@ -1,4 +1,5 @@
 import {  Repository } from "typeorm";
+import { v4 as uuid } from "uuid";
 import Task from "../entities/Task";
 import { tasks } from "../mocks/tasks";
 import { appError } from "../utils/AppError";
@@ -16,7 +17,11 @@ export default class MockedTasksRepository implements ITasksRepository{
         return tasks;
     }
     async createTask(taskName: string){
-        const taskCreated = this.userRepository.create({ taskName, isCompleted: false})
+        const taskCreated = {
+            taskName,
+            isCompleted: false,
+            id: uuid()
+        } as Task
         return taskCreated;
     }
     async deleteTask(id: string){

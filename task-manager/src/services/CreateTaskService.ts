@@ -1,3 +1,4 @@
+import MockedTasksRepository from "../repositories/MockedTaskRepository";
 import TasksRepository, { ITasksRepository } from "../repositories/TasksRepository";
 import { appError } from "../utils/AppError";
 
@@ -11,4 +12,6 @@ class CreateTaskService{
     }
 };
 
-export const createTaskService = new CreateTaskService(new TasksRepository());
+export const createTaskService = process.env.ENVIRONMENT === "TEST" 
+    ? new CreateTaskService(new MockedTasksRepository())
+    : new CreateTaskService(new TasksRepository());
