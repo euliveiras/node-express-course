@@ -1,5 +1,6 @@
 import {  Repository } from "typeorm";
 import Task from "../entities/Task";
+import { tasks } from "../mocks/tasks";
 import { ITasksRepository } from "./TasksRepository";
 
 export default class MockedTasksRepository implements ITasksRepository{
@@ -8,8 +9,7 @@ export default class MockedTasksRepository implements ITasksRepository{
         return [new Task()]
     }
     async getAllTasks() {
-        const tasks = [{id: "asdqsdqxxxx", isCompleted: false, taskName: "cachorros"}] as Task[]
-        return tasks
+        return tasks;
     }
     async createTask(taskName: string){
         const taskCreated = this.userRepository.create({ taskName, isCompleted: false})
