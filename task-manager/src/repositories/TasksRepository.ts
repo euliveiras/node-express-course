@@ -1,4 +1,4 @@
-import typeorm  from "../config/typeorm";
+import typeorm from "../config/typeorm";
 import { Repository } from "typeorm";
 import Task from "../entities/Task";
 
@@ -11,7 +11,7 @@ type UpdateTaskDTO = {
 export type ITasksRepository = {
   getAllTasks(): Promise<Task[] | undefined>;
   createTask(taskName: string): Promise<Task | undefined>;
-  getTask(id: string): Promise<Task[] | undefined>;
+  getTask(id: string): Promise<Task[]>;
   updateTask({ id, taskName, isCompleted }: UpdateTaskDTO): Promise<any>;
   deleteTask(id: string): Promise<{ message: string}>;
 }

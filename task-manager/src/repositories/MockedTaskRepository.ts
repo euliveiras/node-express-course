@@ -1,12 +1,16 @@
 import {  Repository } from "typeorm";
 import Task from "../entities/Task";
 import { tasks } from "../mocks/tasks";
+import { appError } from "../utils/AppError";
 import { ITasksRepository } from "./TasksRepository";
 
 export default class MockedTasksRepository implements ITasksRepository{
     readonly userRepository: Repository<Task>;
+    tasks = [...tasks]
     async getTask(id: string){
-        return [new Task()]
+        const findedTask = tasks.find((task) => task.id === id)
+        if(!findedTask) throw appError("asd", 404)
+        return [findedTask];
     }
     async getAllTasks() {
         return tasks;
