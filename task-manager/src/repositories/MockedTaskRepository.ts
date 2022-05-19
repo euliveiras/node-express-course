@@ -7,7 +7,7 @@ import { ITasksRepository } from "./TasksRepository";
 
 export default class MockedTasksRepository implements ITasksRepository{
     readonly userRepository: Repository<Task>;
-    tasks = [...tasks]
+    public tasks = [...tasks]
     async getTask(id: string){
         const findedTask = tasks.find((task) => task.id === id)
         if(!findedTask) throw appError("asd", 404)

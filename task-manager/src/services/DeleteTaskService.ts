@@ -1,3 +1,4 @@
+import MockedTasksRepository from "../repositories/MockedTaskRepository";
 import TasksRepository from "../repositories/TasksRepository";
 import { appError } from "../utils/AppError";
 
@@ -14,4 +15,6 @@ class DeleteTaskService{
     }
 };
 
-export const deleteTaskService = new DeleteTaskService(new TasksRepository());
+export const deleteTaskService = process.env.ENVIRONMENT === "TEST" 
+    ? new DeleteTaskService(new MockedTasksRepository())
+    : new DeleteTaskService(new TasksRepository());
