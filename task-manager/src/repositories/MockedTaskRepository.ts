@@ -32,6 +32,7 @@ export default class MockedTasksRepository implements ITasksRepository{
     }
     async updateTask({ id, taskName, isCompleted }: { id: string; taskName: string; isCompleted?: boolean }){
         const updateResult= {} as UpdateResult;
+        if (id ==="") throw new Error();
         const task = { id, taskName, isCompleted: isCompleted || false, ...updateResult }
         return task;
     }
