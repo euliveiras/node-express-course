@@ -2,7 +2,7 @@ import {  Repository } from "typeorm";
 import { v4 as uuid } from "uuid";
 import Task from "../entities/Task";
 import { tasks } from "../mocks/tasks";
-import { appError } from "../utils/AppError";
+import { AppError, appError } from "../utils/AppError";
 import { ITasksRepository } from "./TasksRepository";
 
 export default class MockedTasksRepository implements ITasksRepository{
@@ -25,7 +25,10 @@ export default class MockedTasksRepository implements ITasksRepository{
         return taskCreated;
     }
     async deleteTask(id: string){
+        const deletedTask = tasks.find(task => task.id === id)
+        if(typeof deletedTask === "undefined") throw new Error();
         return {message: "true"}
+
     }
     async updateTask({ id, taskName, isCompleted }: { id: string; taskName: string; isCompleted?: boolean | undefined; }){
         const updateTask = [] as any
