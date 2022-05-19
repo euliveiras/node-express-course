@@ -1,4 +1,4 @@
-import {  Repository } from "typeorm";
+import {  Repository, UpdateResult } from "typeorm";
 import { v4 as uuid } from "uuid";
 import Task from "../entities/Task";
 import { tasks } from "../mocks/tasks";
@@ -30,9 +30,10 @@ export default class MockedTasksRepository implements ITasksRepository{
         return {message: "true"}
 
     }
-    async updateTask({ id, taskName, isCompleted }: { id: string; taskName: string; isCompleted?: boolean | undefined; }){
-        const updateTask = [] as any
-        return updateTask
+    async updateTask({ id, taskName, isCompleted }: { id: string; taskName: string; isCompleted?: boolean }){
+        const updateResult= {} as UpdateResult;
+        const task = { id, taskName, isCompleted: isCompleted || false, ...updateResult }
+        return task;
     }
     
 };
