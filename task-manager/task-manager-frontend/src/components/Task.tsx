@@ -15,7 +15,13 @@ import {
 import { FiTrash } from "react-icons/fi";
 import { AiOutlineCheck, AiOutlineEdit } from "react-icons/ai";
 
-export const Task = () => {
+type TaskProps = {
+  name: string;
+  isCompleted: boolean;
+  id: string;
+};
+
+export const Task: React.FC<TaskProps> = ({ id, isCompleted, name }) => {
   return (
     <Flex
       justify={"space-between"}
@@ -27,8 +33,10 @@ export const Task = () => {
       borderRadius={"md"}
     >
       <Center pl={4}>
-        <Icon as={AiOutlineCheck} color={"green"} mr={8} boxSize={6} />
-        <Text>Task</Text>
+        {isCompleted && (
+          <Icon as={AiOutlineCheck} color={"green"} mr={8} boxSize={6} />
+        )}
+        <Text>{name}</Text>
       </Center>
       <Center pr={4}>
         <Button variant={"unstyled"} _hover={{ color: "green" }}>

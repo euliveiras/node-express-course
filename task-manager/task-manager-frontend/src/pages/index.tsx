@@ -6,15 +6,15 @@ import { useState } from "react";
 
 type ITasks = {
   id: string;
-  task: string;
+  name: string;
   isCompleted: boolean;
 }[];
 
 const Home: NextPage = () => {
   const [tasks, setTasks] = useState<ITasks>(() => {
     return [
-      { id: "1", task: "Jantar", isCompleted: true },
-      { id: "2", task: "Almoçar", isCompleted: false },
+      { id: "1", name: "Jantar", isCompleted: true },
+      { id: "2", name: "Almoçar", isCompleted: false },
     ];
   });
 
@@ -32,7 +32,14 @@ const Home: NextPage = () => {
         </Box>
 
         <VStack w={640} spacing={4}>
-          {tasks.map((task) => <Task key={task.id}/>)}
+          {tasks.map((task) => (
+            <Task
+              id={task.id}
+              isCompleted={task.isCompleted}
+              name={task.name}
+              key={task.id}
+            />
+          ))}
         </VStack>
       </VStack>
     </Flex>
