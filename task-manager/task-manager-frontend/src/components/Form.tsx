@@ -15,7 +15,7 @@ import React from "react";
 export const Form = () => {
   return (
     <Box w={"100%"}>
-      <Formik initialValues={{ task: "" }} onSubmit={() => console.log("Olá")}>
+      <Formik initialValues={{ task: "" }} onSubmit={(value) => console.log(value)}>
         {({ handleSubmit, errors, touched }) => (
           <VStack spacing={8} py={8} mx={20} as="form" onSubmit={handleSubmit}>
             <Text fontFamily={"heading"} fontWeight={"700"} fontSize={24}>
