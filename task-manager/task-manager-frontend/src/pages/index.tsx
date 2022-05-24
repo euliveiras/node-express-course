@@ -12,7 +12,7 @@ const Home: NextPage = () => {
           mt={32}
           bgColor={"#FFFFFF"}
           boxShadow={"lg"}
-          borderRadius={"bs"}
+          borderRadius={"lg"}
         >
           <Form />
         </Box>

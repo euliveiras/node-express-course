@@ -13,8 +13,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { FiTrash } from "react-icons/fi";
-import { GrAdd } from "react-icons/gr";
-import { AiOutlineCheck } from "react-icons/ai";
+import { AiOutlineCheck, AiOutlineEdit } from "react-icons/ai";
 
 export const Task = () => {
   return (
@@ -25,15 +24,19 @@ export const Task = () => {
       align={"center"}
       h={12}
       bgColor="whiteAlpha.900"
-      borderRadius={"sm"}
+      borderRadius={"md"}
     >
       <Center pl={4}>
         <Icon as={AiOutlineCheck} color={"green"} mr={8} boxSize={6} />
         <Text>Task</Text>
       </Center>
       <Center pr={4}>
-        <Icon as={GrAdd} color={"green"} />
-        <Icon as={FiTrash} ml={2} />
+        <Button variant={"unstyled"} _hover={{ color: "green" }}>
+          <Icon as={AiOutlineEdit} />
+        </Button>
+        <Button variant={"unstyled"} _hover={{ color: "red" }}>
+          <Icon as={FiTrash} />
+        </Button>
       </Center>
     </Flex>
   );
