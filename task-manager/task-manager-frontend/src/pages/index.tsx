@@ -18,11 +18,11 @@ const Home: NextPage = () => {
     ];
   });
   const handleDelete = (id: string) => {
-    setTasks(oldTasks => {
-      const tasksFiltered = oldTasks.filter(task => task.id !== id)
-      return [...tasksFiltered]
-    })
-  }
+    setTasks((oldTasks) => {
+      const tasksFiltered = oldTasks.filter((task) => task.id !== id);
+      return [...tasksFiltered];
+    });
+  };
 
   return (
     <Flex justifyContent={"center"}>

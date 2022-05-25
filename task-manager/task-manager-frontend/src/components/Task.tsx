@@ -6,6 +6,7 @@ import {
   Link as ChakraLink,
   Text,
 } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import { FiTrash } from "react-icons/fi";
 import { AiOutlineCheck, AiOutlineEdit } from "react-icons/ai";
 import NextLink from "next/link";
@@ -17,13 +18,23 @@ type TaskProps = {
   handleDelete(id: string): void;
 };
 
-export const Task: React.FC<TaskProps> = ({ id, isCompleted, name, handleDelete }) => {
+export const Task: React.FC<TaskProps> = ({
+  id,
+  isCompleted,
+  name,
+  handleDelete,
+}) => {
   const handleClick = () => {
     handleDelete(id);
-  }
+  };
 
   return (
     <Flex
+      as={motion.div}
+      layout
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      transition="0.1s ease"
       justify={"space-between"}
       boxShadow={"lg"}
       w="100%"
