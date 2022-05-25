@@ -17,6 +17,12 @@ const Home: NextPage = () => {
       { id: "2", name: "Almoçar", isCompleted: false },
     ];
   });
+  const handleDelete = (id: string) => {
+    setTasks(oldTasks => {
+      const tasksFiltered = oldTasks.filter(task => task.id !== id)
+      return [...tasksFiltered]
+    })
+  }
 
   return (
     <Flex justifyContent={"center"}>
@@ -38,6 +44,7 @@ const Home: NextPage = () => {
               isCompleted={task.isCompleted}
               name={task.name}
               key={task.id}
+              handleDelete={handleDelete}
             />
           ))}
         </VStack>
