@@ -24,11 +24,18 @@ const Home: NextPage = () => {
     }
   };
 
-  const handleDelete = (id: string) => {
-    setTasks((oldTasks) => {
-      const tasksFiltered = oldTasks.filter((task) => task.id !== id);
-      return [...tasksFiltered];
-    });
+  const handleDelete = async (id: string) => {
+    try {
+      const response = await api.delete("/api/v1/tasks", { data: { id } });
+      if (response.statusText === "OK") {
+        setTasks((oldTasks) => {
+          const tasksFiltered = oldTasks.filter((task) => task.id !== id);
+          return [...tasksFiltered];
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
@@ -51,7 +58,7 @@ const Home: NextPage = () => {
           boxShadow={"lg"}
           borderRadius={"lg"}
         >
-          <Form addTask={addTask}/>
+          <Form addTask={addTask} />
         </Box>
 
         <VStack w={640} spacing={4}>
