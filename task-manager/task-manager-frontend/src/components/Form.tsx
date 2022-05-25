@@ -12,10 +12,17 @@ import {
 import { Formik, Field } from "formik";
 import React from "react";
 
-export const Form = () => {
+type FormProps = {
+  addTask(taskName: string): Promise<void>;
+};
+
+export const Form = ({ addTask }: FormProps) => {
   return (
     <Box w={"100%"}>
-      <Formik initialValues={{ task: "" }} onSubmit={(value) => console.log(value)}>
+      <Formik initialValues={{ task: "" }} onSubmit={(value) => {
+        addTask(value.task);
+        value.task = "";
+      }}>
         {({ handleSubmit, errors, touched }) => (
           <VStack spacing={8} py={8} mx={20} as="form" onSubmit={handleSubmit}>
             <Text fontFamily={"heading"} fontWeight={"700"} fontSize={24}>
