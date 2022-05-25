@@ -32,10 +32,12 @@ export const Task: React.FC<TaskProps> = ({ id, isCompleted, name }) => {
       bgColor="whiteAlpha.900"
       borderRadius={"md"}
     >
-      <Center pl={4}>
-        {isCompleted && (
-          <Icon as={AiOutlineCheck} color={"green"} mr={8} boxSize={6} />
-        )}
+      <Center justifyContent={"space-between"}>
+        <Center w={16}> 
+          {isCompleted && (
+            <Icon as={AiOutlineCheck} color={"green"} boxSize={6} />
+          )}
+        </Center>
         <Text>{name}</Text>
       </Center>
       <Center pr={4}>
