@@ -1,6 +1,7 @@
 import {
   Box,
   Center,
+  keyframes,
   Flex,
   Icon,
   Link as ChakraLink,
@@ -18,6 +19,14 @@ type TaskProps = {
   handleDelete(id: string): void;
 };
 
+const animationKeyframes = keyframes`
+  0% { transform: scale(0) }
+  50% { transform: scale(0.5) }
+  100% { transform: scale(1)  }
+`;
+
+const animation = `${animationKeyframes} 0.3s ease-in-out`;
+
 export const Task: React.FC<TaskProps> = ({
   id,
   isCompleted,
@@ -32,9 +41,7 @@ export const Task: React.FC<TaskProps> = ({
     <Flex
       as={motion.div}
       layout
-      initial={{ scale: 0 }}
-      animate={{ scale: 1 }}
-      transition="0.1s ease"
+      animation={animation}
       justify={"space-between"}
       boxShadow={"lg"}
       w="100%"
