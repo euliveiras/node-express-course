@@ -4,13 +4,9 @@ import {
   Center,
   Checkbox,
   Flex,
-  FormControl,
-  FormErrorMessage,
   FormLabel,
   Input,
   InputGroup,
-  InputLeftElement,
-  InputRightElement,
   Text,
   VStack,
 } from "@chakra-ui/react";
