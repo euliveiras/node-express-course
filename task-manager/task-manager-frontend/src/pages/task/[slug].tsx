@@ -3,6 +3,7 @@ import {
   Button,
   Center,
   Checkbox,
+  CheckboxGroup,
   Flex,
   FormLabel,
   Input,
@@ -12,13 +13,17 @@ import {
 } from "@chakra-ui/react";
 import { Field, Formik } from "formik";
 import { GetStaticPaths, GetStaticProps } from "next";
+import { useTask } from "../../contexts/TaskContext";
 
 type TaskProps = {
   id: string;
 };
 
 export default function Task({ id }: TaskProps) {
-  if (id) {
+  const { handleEdit, tasks } = useTask();
+  const task = tasks.find((task) => task.id === id);
+
+  if (task) {
     return (
       <Flex justifyContent={"center"}>
         <Box
@@ -30,9 +35,14 @@ export default function Task({ id }: TaskProps) {
         >
           <Box w={"100%"}>
             <Formik
-              initialValues={{ taskId: id, taskName: "", isCompleted: true }}
-              onSubmit={(value) => {
-                console.log(value);
+              initialValues={{
+                taskId: id,
+                taskName: task.taskName,
+                isCompleted: task.isCompleted,
+              }}
+              onSubmit={({ isCompleted, taskId: id, taskName }) => {
+                console.log(isCompleted, id, taskName);
+                handleEdit({ id, taskName, isCompleted });
               }}
             >
               {({ handleSubmit, errors, touched }) => (
@@ -75,20 +85,18 @@ export default function Task({ id }: TaskProps) {
                       />
                     </Center>
                   </InputGroup>
-                  <InputGroup w="100%">
-                    <Center justifyContent={"space-between"} w="100%">
-                      <FormLabel htmlFor="isCompleted" m={0}>
-                        Is completed?
-                      </FormLabel>
-                      <Field
-                        w="auto"
-                        name="isCompleted"
-                        id="isCompleted"
-                        type="checkbox"
-                        as={Checkbox}
-                      />
-                    </Center>
-                  </InputGroup>
+                  <Center justifyContent={"space-between"} w="100%">
+                    <FormLabel htmlFor="isCompleted" m={0}>
+                      Is completed?
+                    </FormLabel>
+                    <Field
+                      w="auto"
+                      name="isCompleted"
+                      id="isCompleted"
+                      type="checkbox"
+                      // as={Checkbox}
+                    />
+                  </Center>
                   <Button
                     variant={"solid"}
                     borderRadius={4}
