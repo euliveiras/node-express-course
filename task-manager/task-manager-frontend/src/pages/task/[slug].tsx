@@ -118,6 +118,7 @@ export default function Task({ id }: TaskProps) {
                     borderRadius={4}
                     colorScheme="purple"
                     type="submit"
+                    _focus={{ border: "none" }}
                   >
                     edit task
                   </Button>
