@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Toast,
   Center,
   Link,
   FormLabel,
@@ -9,6 +10,7 @@ import {
   InputGroup,
   Text,
   VStack,
+  useToast,
 } from "@chakra-ui/react";
 import { Field, Formik } from "formik";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -22,13 +24,14 @@ type TaskProps = {
 export default function Task({ id }: TaskProps) {
   const { handleEdit, tasks } = useTask();
   const task = tasks.find((task) => task.id === id);
+  const toast = useToast();
 
   if (task) {
     return (
       <Grid justifyContent={"center"}>
         <Box
           w={640}
-          mt={16}
+          mt={24}
           bgColor={"#FFFFFF"}
           boxShadow={"lg"}
           borderRadius={"lg"}
@@ -41,8 +44,24 @@ export default function Task({ id }: TaskProps) {
                 isCompleted: task.isCompleted,
               }}
               onSubmit={({ isCompleted, taskId: id, taskName }) => {
-                console.log(isCompleted, id, taskName);
-                handleEdit({ id, taskName, isCompleted });
+                try {
+                  handleEdit({ id, taskName, isCompleted });
+                  toast({
+                    description: "Your task was successfuly edited!",
+                    status: "success",
+                    duration: 9000,
+                    isClosable: true,
+                    position: "top-right"
+                  })
+                } catch (err) {
+                  toast({
+                    title: "Error",
+                    description: err.message,
+                    status: "error",
+                    duration: 9000,
+                    isClosable: true,
+                  });
+                }
               }}
             >
               {({ handleSubmit, errors, touched }) => (
