@@ -6,8 +6,12 @@ Este é o repositório dos exercícios que fiz pelo curso de **Nodejs/Express** 
 
 - ### [Task Manager](/task-manager/) 
 
-Esta aplicação consiste em uma API Rest que persiste os dados fornecidos em um banco de dados Postgres. O banco roda em um container do Docker. 
-A aplicação performa operações CRUD.
+Gerenciador de tarefas. Você pode adicionar tarefas, editá-las e removê-las. A API salva os dados das tarefas em um banco Postgres, que roda em uma instância Docker. 
+O frontend foi feito com NextJS e ChakraUI.
+O backend foi feito com NodeJS, Express, TypeORM e Postgres.
+
+
+
 
 
 
