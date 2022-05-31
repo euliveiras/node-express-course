@@ -60,7 +60,11 @@ export const Task: React.FC<TaskProps> = ({
       </Center>
       <Center pr={4} gap={4}>
         <NextLink href={`/task/${id}`} passHref>
-          <ChakraLink variant={"unstyled"} _hover={{ color: "green" }}>
+          <ChakraLink
+            variant={"unstyled"}
+            _hover={{ color: "green" }}
+            _focus={{ border: "none" }}
+          >
             <Icon as={AiOutlineEdit} />
           </ChakraLink>
         </NextLink>
