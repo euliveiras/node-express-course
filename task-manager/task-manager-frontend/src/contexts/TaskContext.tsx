@@ -1,3 +1,4 @@
+import { ToastId, useToast, UseToastOptions } from "@chakra-ui/react";
 import { createContext, useContext, useEffect, useState } from "react";
 import { api } from "../utils/axios";
 
@@ -18,12 +19,14 @@ type ITaskContext = {
   handleEdit({}: HandleEditArgs): void;
   addTask(taskName: string): Promise<void>;
   handleDelete(id: string): void;
+  toast(options: UseToastOptions): ToastId;
 };
 
 const TaskContext = createContext({} as ITaskContext);
 
 export function TaskProvider({ children }: { children: React.ReactNode }) {
   const [tasks, setTasks] = useState<ITasks>([]);
+  const toast = useToast();
 
   useEffect(() => {
     async function fetchInitialData() {
@@ -66,7 +69,7 @@ export function TaskProvider({ children }: { children: React.ReactNode }) {
     }
   };
   return (
-    <TaskContext.Provider value={{ tasks, handleEdit, addTask, handleDelete }}>
+    <TaskContext.Provider value={{ tasks, handleEdit, addTask, handleDelete, toast }}>
       {children}
     </TaskContext.Provider>
   );

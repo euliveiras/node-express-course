@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Toast,
   Center,
   Link,
   FormLabel,
@@ -10,7 +9,6 @@ import {
   InputGroup,
   Text,
   VStack,
-  useToast,
 } from "@chakra-ui/react";
 import { Field, Formik } from "formik";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -22,9 +20,8 @@ type TaskProps = {
 };
 
 export default function Task({ id }: TaskProps) {
-  const { handleEdit, tasks } = useTask();
+  const { handleEdit, tasks, toast } = useTask();
   const task = tasks.find((task) => task.id === id);
-  const toast = useToast();
 
   if (task) {
     return (
@@ -51,8 +48,8 @@ export default function Task({ id }: TaskProps) {
                     status: "success",
                     duration: 9000,
                     isClosable: true,
-                    position: "top-right"
-                  })
+                    position: "top-right",
+                  });
                 } catch (err) {
                   toast({
                     title: "Error",
