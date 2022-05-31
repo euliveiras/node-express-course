@@ -2,10 +2,9 @@ import {
   Box,
   Button,
   Center,
-  Checkbox,
-  CheckboxGroup,
-  Flex,
+  Link,
   FormLabel,
+  Grid,
   Input,
   InputGroup,
   Text,
@@ -13,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { Field, Formik } from "formik";
 import { GetStaticPaths, GetStaticProps } from "next";
+import NextLink from "next/link";
 import { useTask } from "../../contexts/TaskContext";
 
 type TaskProps = {
@@ -25,10 +25,10 @@ export default function Task({ id }: TaskProps) {
 
   if (task) {
     return (
-      <Flex justifyContent={"center"}>
+      <Grid justifyContent={"center"}>
         <Box
           w={640}
-          mt={32}
+          mt={16}
           bgColor={"#FFFFFF"}
           boxShadow={"lg"}
           borderRadius={"lg"}
@@ -110,7 +110,23 @@ export default function Task({ id }: TaskProps) {
             </Formik>
           </Box>
         </Box>
-      </Flex>
+        <NextLink href="/" passHref>
+          <Link
+            // variant={"solid"}
+            mt={"2rem"}
+            w={"auto"}
+            fontSize="2xl"
+            fontWeight={"bold"}
+            marginInline={"auto"}
+            borderRadius={4}
+            color="blackAlpha.900"
+            _hover={{ textDecoration: "none", color: "blackAlpha.700" }}
+            transition={"color, 0.2s"}
+          >
+            back to tasks
+          </Link>
+        </NextLink>
+      </Grid>
     );
   }
   return <Text>Loading</Text>;

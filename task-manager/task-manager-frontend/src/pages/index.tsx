@@ -1,9 +1,7 @@
 import type { NextPage } from "next";
 import { Box, Flex, VStack } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
 import { Task } from "../components/Task";
 import { Form } from "../components/Form";
-import { api } from "../utils/axios";
 import { useTask } from "../contexts/TaskContext";
 
 type ITasks = {
